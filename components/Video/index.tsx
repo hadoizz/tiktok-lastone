@@ -1,4 +1,5 @@
 import Image from 'next/image';
+import 'node_modules/video-react/dist/video-react.css';
 import React, { useState } from 'react';
 import { AiOutlineDownload, AiOutlineLoading3Quarters } from 'react-icons/ai';
 import { MdDownloadDone, MdOutlineContentCopy } from 'react-icons/md';
@@ -14,6 +15,7 @@ const Video = ({
 		play: string;
 		cover: string;
 		wmplay: string;
+		origin_cover: string;
 		author: { id: number; unique_id: string; avatar: string; nickname: string };
 	};
 }) => {
@@ -26,6 +28,7 @@ const Video = ({
 		setTimeout(() => {
 			setLoading(false);
 		}, 500);
+		window.open(videoData.play);
 		setDownloaded(true);
 	};
 
@@ -47,7 +50,11 @@ const Video = ({
 						<p className="text-lg">{videoData.title.slice(0, 60)}...</p>
 					</div>
 				</div>
-				<Image width={400} height={100} src={videoData.cover} alt="Cover" />
+				<Player
+					playsInline
+					poster={videoData.origin_cover}
+					src={videoData.play}
+				/>
 				<div className="flex gap-2 px-2 py-3">
 					<button
 						className={`${
