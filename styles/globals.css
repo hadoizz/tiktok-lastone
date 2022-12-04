@@ -23,10 +23,16 @@ a {
 }
 
 .container {
-	max-width: 390px;
+	max-width: 490px;
 	margin-left: auto;
 	margin-right: auto;
 	padding: 0 1rem;
+}
+
+@media screen and (max-width: 768px) {
+	.container {
+		max-width: 390px;
+	}
 }
 
 .video-react .video-react-big-play-button {
