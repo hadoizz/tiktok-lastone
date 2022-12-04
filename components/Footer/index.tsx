@@ -15,7 +15,7 @@ const Footer = () => {
 	return (
 		<footer ref={footerRef}>
 			<div className="container">
-				<div className="flex justify-end items-center gap-4 border-t py-2">
+				<div className="flex justify-center items-center gap-4 border-t py-2">
 					<Link href={'/'}>Disclaimer</Link>
 					<Link href={'/'}>Privacy Policy</Link>
 				</div>

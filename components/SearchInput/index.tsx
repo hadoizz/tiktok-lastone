@@ -19,38 +19,75 @@ const SearchInput = () => {
 	// get user post
 	const dispatch = useDispatch();
 	const getUserPost = (value: string) => {
-		const options = {
-			method: 'GET',
-			url: 'https://tiktok-video-no-watermark2.p.rapidapi.com/user/posts',
-			params: {
-				unique_id: value,
-			},
-			headers: {
-				'X-RapidAPI-Key': '40144bbb81msh2a9340dd989447ap168327jsn5650256e8df2',
-				'X-RapidAPI-Host': 'tiktok-video-no-watermark2.p.rapidapi.com',
-			},
-		};
+		var options = null;
 
-		axios
-			.request(options)
-			.then(function (response) {
-				if (response.data.msg === 'success') {
-					const videos = response.data.data.videos;
-					dispatch(
-						setVidoes({
-							title: 'User Video',
-							videos: videos,
-						})
-					);
-					setvideos(videos);
+		if (value.includes('tiktok.com') && value.includes('/video/')) {
+			// get video by url
+			options = {
+				method: 'GET',
+				url: 'https://tiktok-video-no-watermark2.p.rapidapi.com/',
+				params: { url: value, hd: '0' },
+				headers: {
+					'X-RapidAPI-Key':
+						'40144bbb81msh2a9340dd989447ap168327jsn5650256e8df2',
+					'X-RapidAPI-Host': 'tiktok-video-no-watermark2.p.rapidapi.com',
+				},
+			};
+		} else if (!value.includes('tiktok.com') && !value.includes('@')) {
+			setError('please enter a correct username with @!');
+			dispatch(setVideoLoading(false));
+		} else {
+			// get user videos by username
+			options = {
+				method: 'GET',
+				url: 'https://tiktok-video-no-watermark2.p.rapidapi.com/user/posts',
+				params: {
+					unique_id: value,
+				},
+				headers: {
+					'X-RapidAPI-Key':
+						'40144bbb81msh2a9340dd989447ap168327jsn5650256e8df2',
+					'X-RapidAPI-Host': 'tiktok-video-no-watermark2.p.rapidapi.com',
+				},
+			};
+		}
+
+		if (options) {
+			axios
+				.request(options)
+				.then(function (response) {
+					if (response.data.msg === 'success') {
+						var videoArray = null;
+						var feedTitle = null;
+						if (response.data.data.videos) {
+							videoArray = response.data.data.videos;
+							feedTitle = 'User Vidoes';
+						} else {
+							videoArray = [response.data.data];
+							feedTitle = 'Videso';
+						}
+
+						if (videoArray) {
+							dispatch(
+								setVidoes({
+									title: feedTitle,
+									videos: videoArray,
+								})
+							);
+							setvideos(videos);
+							dispatch(setVideoLoading(false));
+						}
+					} else {
+						setError('username or video url is wrong.');
+						dispatch(setVideoLoading(false));
+					}
+					console.log(response.data);
+				})
+				.catch(function (error) {
+					console.error(error);
 					dispatch(setVideoLoading(false));
-				}
-				console.log(response.data);
-			})
-			.catch(function (error) {
-				console.error(error);
-				dispatch(setVideoLoading(false));
-			});
+				});
+		}
 	};
 
 	// clear error

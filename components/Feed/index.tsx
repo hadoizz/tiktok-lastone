@@ -8,7 +8,7 @@ const Feed = () => {
 	return (
 		<div className="py-4">
 			<div className="container">
-				<div className="grid grid-cols-1 gap-4 mt-4">
+				<div className="grid grid-cols-1 gap-4 sm:mt-4">
 					{siteState.videos?.map((item: any, i: number) => (
 						<Video key={i} videoData={item} />
 					))}
