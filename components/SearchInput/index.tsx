@@ -113,9 +113,12 @@ const SearchInput = () => {
 		<>
 			<div className="pt-32 pb-4">
 				<div className="container">
-					<h2 className="text-lg font-bold text-center mb-4">
+					<h2 className="text-lg font-bold text-center">
 						Enter Snapchat Username/URL
 					</h2>
+					<p className="text-center mb-4">
+						download tkik video without watermark wih username
+					</p>
 					<div className="flex flex-col sm:flex-row gap-4 sm:gap-2 items-center justify-center">
 						<input
 							ref={inputRef}

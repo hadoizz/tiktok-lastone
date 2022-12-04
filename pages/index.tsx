@@ -6,7 +6,7 @@ const HomePage = () => {
 	const siteState = useSelector((state: RootState) => state.site);
 
 	return (
-		<div className="bg-gray-900 text-white">
+		<div className="bg-[#121314] text-white">
 			<Navigation />
 			<main
 				style={{

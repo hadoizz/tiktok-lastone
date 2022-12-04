@@ -82,7 +82,7 @@ const Video = ({
 					src={videoData.play}
 				/>
 				<div className="flex gap-2 px-2 py-3">
-					{isLoading && (
+					{/* {isLoading && (
 						<div className="bg-slate-400 py-2 w-full rounded relative flex items-center justify-center">
 							<span className="relative z-10 text-gray-700">
 								downloading {downloadProcess}%
@@ -92,46 +92,48 @@ const Video = ({
 								style={{ width: `${downloadProcess}%` }}
 							></div>
 						</div>
-					)}
-					{!isLoading && (
-						<>
-							<button
-								className={`${
-									downloaded ? 'bg-yellow-600 shadow-lg' : 'bg-yellow-300'
-								} text-gray-700 px-3 py-2 rounded flex items-center gap-2 shadow-md transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-600 active:shadow-lg cursor-pointer disabled:opacity-75 disabled:cursor-progress`}
-								onClick={onDownload}
-								disabled={isLoading}
-							>
-								{isLoading && (
-									<>
-										<span className="animate-spin">
-											<AiOutlineLoading3Quarters />
-										</span>
-										<span>Downloading...</span>
-									</>
-								)}
-								{!isLoading && (
-									<>
-										{downloaded ? <MdDownloadDone /> : <AiOutlineDownload />}
-										<span>{downloaded ? 'Downloaded' : 'Download'}</span>
-									</>
-								)}
-							</button>
+					)} */}
 
-							<button
-								className={`${
-									copied ? 'bg-yellow-600 shadow-lg' : 'bg-yellow-300'
-								} text-gray-700 px-3 py-2 rounded flex items-center gap-2 shadow-md transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-600 active:shadow-lg`}
-								onClick={() => {
-									navigator.clipboard.writeText(videoData.play);
-									setCopied(true);
-								}}
-							>
-								{copied ? <RxClipboardCopy /> : <MdOutlineContentCopy />}
-								<span>{copied ? 'Copied' : 'Copy URL'}</span>
-							</button>
-						</>
-					)}
+					<>
+						<button
+							className={`${
+								downloaded ? 'bg-yellow-600 shadow-lg' : 'bg-yellow-300'
+							} text-gray-700 px-3 py-2 rounded flex items-center gap-2 shadow-md transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-600 active:shadow-lg cursor-pointer disabled:opacity-75 disabled:cursor-progress`}
+							onClick={() => {
+								window.open(videoData.play);
+								setDownloaded(true);
+							}}
+							disabled={isLoading}
+						>
+							{isLoading && (
+								<>
+									<span className="animate-spin">
+										<AiOutlineLoading3Quarters />
+									</span>
+									<span>Downloading...</span>
+								</>
+							)}
+							{!isLoading && (
+								<>
+									{downloaded ? <MdDownloadDone /> : <AiOutlineDownload />}
+									<span>{downloaded ? 'Downloaded' : 'Download'}</span>
+								</>
+							)}
+						</button>
+
+						<button
+							className={`${
+								copied ? 'bg-yellow-600 shadow-lg' : 'bg-yellow-300'
+							} text-gray-700 px-3 py-2 rounded flex items-center gap-2 shadow-md transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-600 active:shadow-lg`}
+							onClick={() => {
+								navigator.clipboard.writeText(videoData.play);
+								setCopied(true);
+							}}
+						>
+							{copied ? <RxClipboardCopy /> : <MdOutlineContentCopy />}
+							<span>{copied ? 'Copied' : 'Copy URL'}</span>
+						</button>
+					</>
 				</div>
 			</div>
 		</>
