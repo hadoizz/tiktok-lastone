@@ -7,6 +7,8 @@ export interface siteState {
 	feedTitle?: any;
 	videos?: any;
 	videoLoading?: boolean;
+	currentPage: number;
+	perPage: number;
 }
 
 const initialState: siteState = {
@@ -15,6 +17,8 @@ const initialState: siteState = {
 	feedTitle: null,
 	videos: null,
 	videoLoading: false,
+	currentPage: 0,
+	perPage: 12,
 };
 
 export const themeSlice = createSlice({
@@ -34,10 +38,23 @@ export const themeSlice = createSlice({
 			state.feedTitle = action.payload;
 			state.videos = action.payload.videos;
 		},
+		setPagination: (state, action: PayloadAction<any>) => {
+			state.currentPage = action.payload.currentPage
+				? action.payload.currentPage
+				: state.currentPage;
+			state.perPage = action.payload.perPage
+				? action.payload.perPage
+				: state.perPage;
+		},
 	},
 });
 
-export const { setNavHeight, setFooterHeight, setVidoes, setVideoLoading } =
-	themeSlice.actions;
+export const {
+	setNavHeight,
+	setFooterHeight,
+	setVidoes,
+	setVideoLoading,
+	setPagination,
+} = themeSlice.actions;
 
 export default themeSlice.reducer;

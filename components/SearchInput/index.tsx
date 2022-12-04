@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useRef, useState } from 'react';
 import {
 	RootState,
+	setPagination,
 	setVideoLoading,
 	setVidoes,
 	useDispatch,
@@ -26,7 +27,7 @@ const SearchInput = () => {
 			options = {
 				method: 'GET',
 				url: 'https://tiktok-video-no-watermark2.p.rapidapi.com/',
-				params: { url: value, hd: '0' },
+				params: { url: value, hd: '0', count: '1000' },
 				headers: {
 					'X-RapidAPI-Key':
 						'40144bbb81msh2a9340dd989447ap168327jsn5650256e8df2',
@@ -43,6 +44,7 @@ const SearchInput = () => {
 				url: 'https://tiktok-video-no-watermark2.p.rapidapi.com/user/posts',
 				params: {
 					unique_id: value,
+					count: '1000',
 				},
 				headers: {
 					'X-RapidAPI-Key':
@@ -93,6 +95,7 @@ const SearchInput = () => {
 	// clear error
 	const onClickInput = () => {
 		setError(null);
+		dispatch(setPagination({ currentPage: 0 }));
 	};
 
 	// onclick search button
