@@ -95,15 +95,11 @@ const Video = ({
 					)} */}
 
 					<>
-						<button
+						<a
 							className={`${
 								downloaded ? 'bg-yellow-600 shadow-lg' : 'bg-yellow-300'
 							} text-gray-700 px-3 py-2 rounded flex items-center gap-2 shadow-md transition duration-150 ease-in-out hover:bg-yellow-400 hover:shadow-lg focus:bg-yellow-600 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-yellow-600 active:shadow-lg cursor-pointer disabled:opacity-75 disabled:cursor-progress`}
-							onClick={() => {
-								window.location.href = videoData.play;
-								setDownloaded(true);
-							}}
-							disabled={isLoading}
+							href={videoData.play}
 						>
 							{isLoading && (
 								<>
@@ -119,7 +115,7 @@ const Video = ({
 									<span>{downloaded ? 'Downloaded' : 'Download'}</span>
 								</>
 							)}
-						</button>
+						</a>
 
 						<button
 							className={`${
