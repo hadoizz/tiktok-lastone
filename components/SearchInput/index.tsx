@@ -30,7 +30,7 @@ const SearchInput = () => {
 				params: { url: value, hd: '0', count: '1000' },
 				headers: {
 					'X-RapidAPI-Key':
-						'40144bbb81msh2a9340dd989447ap168327jsn5650256e8df2',
+						'5efaae8b28msh000d940125a53e3p1dda09jsnd47fd37b864e',
 					'X-RapidAPI-Host': 'tiktok-video-no-watermark2.p.rapidapi.com',
 				},
 			};
@@ -48,7 +48,7 @@ const SearchInput = () => {
 				},
 				headers: {
 					'X-RapidAPI-Key':
-						'40144bbb81msh2a9340dd989447ap168327jsn5650256e8df2',
+						'5efaae8b28msh000d940125a53e3p1dda09jsnd47fd37b864e',
 					'X-RapidAPI-Host': 'tiktok-video-no-watermark2.p.rapidapi.com',
 				},
 			};
